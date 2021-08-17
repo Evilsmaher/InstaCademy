@@ -74,14 +74,23 @@ struct PostRow: View {
                 Spacer()
                 Text(DateFormatter.postFormat(date: post.timestamp))
             }
-            .padding([.leading, .bottom, .trailing], 20)
-            Spacer()
+            .padding([.leading, .trailing], 20)
+            Divider()
             Text(post.text)
                 .font(.body)
-                .padding(.bottom)
+                .padding([.bottom, .top])
                 .padding(.leading, 30)
+                // Accomplishes Auto-Height for Multi-Text
+                // It expands the view to a fixed size Vertically, but maintains the stature of
+                // the horizontal component
+                .fixedSize(horizontal: false, vertical: true)
+            HStack {
+                Spacer()
+                Text("Comments: 0")
+            }
         }
-        .border(Color.black, width: 0.5)
+        .background(Color.blue.opacity(0.5))
+        .cornerRadius(10)
     }
 }
 
